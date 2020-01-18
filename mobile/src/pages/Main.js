@@ -127,7 +127,10 @@ export default function Main({ navigation }) {
               <View style={styles.callout}>
                 <Text style={styles.devName}>{dev.github_username}</Text>
                 <Text style={styles.devBio}>{dev.bio}</Text>
-                <Text style={styles.devTechs}>{dev.techs.join(", ")}</Text>
+                <Text style={styles.devTechs}>
+                  {dev.techs.map(t => t.charAt(0).toUpperCase() 
+                  + t.slice(1)).join(", ")}
+                </Text>
               </View>
             </Callout>
           </Marker>
