@@ -8,6 +8,7 @@ const { setupWebsocket } = require("./websocket");
 
 const app = express();
 const server = http.Server(app);
+setupWebsocket(server);
 
 mongoose.connect("mongodb+srv://omnistack:omnistack@cluster0-4vvdr.gcp.mongodb.net/week10?retryWrites=true&w=majority", {
     useNewUrlParser: true,

@@ -1,4 +1,4 @@
-const socktio = require("socket.io");
+const socketio = require("socket.io");
 const parseStringAsArray = require("./utils/parseStringAsArray");
 const calculateDistance = require("./utils/calculateDistance");
 
@@ -10,7 +10,8 @@ exports.setupWebsocket = (server) => {
 
     io.on('connection', socket => {
         const { latitude, longitude, techs } = socket.handshake.query;
-
+        console.log(socket.id);
+        
         connections.push({
             id: socket.id,
             coordinates: {
