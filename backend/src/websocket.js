@@ -11,7 +11,7 @@ exports.setupWebsocket = (server) => {
     io.on('connection', socket => {
         const { latitude, longitude, techs } = socket.handshake.query;
         console.log(socket.id);
-        
+
         connections.push({
             id: socket.id,
             coordinates: {
@@ -21,17 +21,17 @@ exports.setupWebsocket = (server) => {
             techs: parseStringAsArray(techs),
         });
     });
-}
+};
 
 exports.findConnections = (coordinates, techs) => {
     return connections.filter(connection => {
-        return calculateDistance(coordinates, connection.coordinates) < 10
-            && connection.techs.some(item => techs.includes(item));
+        return (calculateDistance(coordinates, connection.coordinates) < 10
+            && connection.techs.some(item => techs.includes(item)));
     });
-}
+};
 
 exports.sendMessage = (to, message, data) => {
     to.forEach(connection => {
-        io.to(connection.id).emmit(message, data);
+        io.to(connection.id).emit(message, data);
     });
-}
+};
