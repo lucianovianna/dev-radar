@@ -61,7 +61,7 @@ module.exports = {
                 throw error;
             } else {
                 console.log(new Date() + " usuário deletado");
-                return response.json('Usuário removido');
+                return response.json({ message:'Usuário removido' });
             }
         });
     },
