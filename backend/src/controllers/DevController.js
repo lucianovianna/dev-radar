@@ -49,5 +49,20 @@ module.exports = {
         }
         return response.json(dev);
         
-    }
+    },
+
+    async destroy(request, response) {
+        const { id } = request.params;
+        console.log(request.params);
+        
+        const dev = await Dev.findByIdAndDelete(id, (error) => {
+            if(error){
+                console.log("Erro em deletar o usuario\n\n");
+                throw error;
+            } else {
+                console.log(new Date() + " usuário deletado");
+                return response.json({ message:'Usuário removido' });
+            }
+        });
+    },
 }

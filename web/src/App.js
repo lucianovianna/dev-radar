@@ -32,7 +32,26 @@ function App() {
   async function handleAddDev(data) {
     const response = await api.post("/devs", data);
 
+    const devExists = devs.find(
+      dev => dev.github_username === data.github_username
+    );
+
+    if (devExists) {
+      console.log(new Date() + "\t Usuário já cadastrado");
+      alert("Dev já cadastrado.");
+      return;
+    }
+
     setDevs([...devs, response.data]);
+  }
+
+  async function handleDelete(id) {
+    const response = await api.delete(`/devs/${id}`);
+
+    if (response.data) {
+      const filteredDevs = devs.filter(dev => dev._id !== id);
+      setDevs(filteredDevs);
+    }
   }
 
   return (
@@ -45,7 +64,11 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
+            <DevItem 
+              key={dev._id} 
+              dev={dev} 
+              handleDelete={handleDelete}
+            />
           ))}
         </ul>
       </main>

@@ -1,3 +1,15 @@
+li.dev-item a .delete-button {
+    text-align: right;
+    position: absolute;
+    justify-items: right;
+}
+
+.delete-button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
 li.dev-item {
     background: #FFF;
     box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
